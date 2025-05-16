@@ -70,5 +70,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Commit') {
+            steps {
+                script {
+                    echo 'Commited.'
+                }
+            }
+        }
     }
 }
