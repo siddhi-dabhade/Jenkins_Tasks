@@ -78,5 +78,13 @@ pipeline {
                 }
             }
         }
+
+        stage('Second Commit') {
+            steps {
+                script {
+                    echo 'Second update Commited.'
+                }
+            }
+        }
     }
 }
