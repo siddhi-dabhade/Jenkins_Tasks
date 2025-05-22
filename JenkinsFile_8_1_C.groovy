@@ -24,6 +24,16 @@ pipeline {
                     echo 'Tool: JUnit'
                 }
             }
+            post {
+                always {
+                    emailext(
+                        subject: "Unit and Integration Test - ${currentBuild.currentResult}",
+                        body: "Unit and Integration Test stage completed with status: ${currentBuild.currentResult}",
+                        to: "siddhik.dabhade@gmail.com",
+                        attachLog: true
+                    )
+                }
+            }
         }
 
         stage('Code Analysis') {
@@ -40,6 +50,16 @@ pipeline {
                 script {
                     echo 'Perform a security scan on the code using a tool to identify any vulnerabilities'
                     echo 'Tool: Docker Scout'
+                }
+            }
+            post {
+                always {
+                    emailext(
+                        subject: "Security Scan Stage - ${currentBuild.currentResult}",
+                        body: "Security Scan stage completed with status: ${currentBuild.currentResult}",
+                        to: "siddhik.dabhade@gmail.com",
+                        attachLog: true
+                    )
                 }
             }
         }
